@@ -11,5 +11,10 @@ pipeline {
                 echo 'Hello world!'
             }
         }
+        stage('DDD 2') {
+            steps {
+                echo 'jimmy test!'
+            }
+        }
     }
 }
