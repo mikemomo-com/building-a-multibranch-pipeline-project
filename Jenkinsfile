@@ -7,6 +7,10 @@ pipeline {
                     - name: maven
                       image: maven:3.9.9-eclipse-temurin-17
                       command: ["tail", "-f", "/dev/null"]
+                    - name: node
+                    image: node:20-alpine
+                    command: ['cat']
+                    tty: true
             '''
         }
     }
@@ -16,12 +20,16 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'npm install'
+                container('node') {
+                    sh 'npm install'
+                }
             }
         }
         stage('Test') {
             steps {
-                sh './jenkins/scripts/test.sh'
+                container('node') {
+                    sh './jenkins/scripts/test.sh'
+                }
             }
         }
     }
