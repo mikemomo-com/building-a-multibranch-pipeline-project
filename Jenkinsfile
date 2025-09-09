@@ -8,9 +8,9 @@ pipeline {
                       image: maven:3.9.9-eclipse-temurin-17
                       command: ["tail", "-f", "/dev/null"]
                     - name: node
-                    image: node:20-alpine
-                    command: ['cat']
-                    tty: true
+                      image: node:20-alpine
+                      command: ['cat']
+                      tty: true
             '''
         }
     }
