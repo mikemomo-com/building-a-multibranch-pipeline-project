@@ -1,5 +1,16 @@
 pipeline {
-    agent any
+    agent {
+        kubernetes {
+            yaml '''
+                spec:
+                    containers:
+                    - name: maven
+                        image: maven:3.9.9-eclipse-temurin-17
+                        command: ["sleep"]
+                        args: ["99d"]
+            '''
+        }
+    }
     environment {
         CI = 'true'
     }
