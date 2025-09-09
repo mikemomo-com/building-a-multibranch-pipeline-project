@@ -1,19 +1,17 @@
 pipeline {
     agent any
+    environment {
+        CI = 'true'
+    }
     stages {
         stage('Build') {
             steps {
-                echo 'Hello world!'
+                sh 'npm install'
             }
         }
-        stage('Build 2') {
+        stage('Test') {
             steps {
-                echo 'Hello world!'
-            }
-        }
-        stage('DDD 2') {
-            steps {
-                echo 'jimmy test!'
+                sh './jenkins/scripts/test.sh'
             }
         }
     }
